@@ -20,3 +20,9 @@ def row_reduce(matrix):
             if j != i:
                 matrix[j] = [matrix[j][k] - matrix[j][i] * matrix[i][k] for k in range(cols)]
     return matrix
+
+@app.route('/', methods = ['GET', 'POST'])
+
+def index():
+    if request.method == 'POST':
+        #get matrix and call row_reduce
