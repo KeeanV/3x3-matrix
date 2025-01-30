@@ -33,7 +33,7 @@ def index():
             [Fraction(request.form['a31']), Fraction(request.form['a32']), Fraction(request.form['a33'])]
         ]
         matrix_reduced = row_reduce(matrix)
-        return render_template('index.html', matrix=matrix, matrix_reduced=rmatrix_reduced)
+        return render_template('index.html', matrix=matrix, matrix_reduced=matrix_reduced)
     return render_template('index.html', matrix=None, matrix_reduced=None) #Set matrix to empty when app is first loaded
 
 if __name__ == '__main__':
