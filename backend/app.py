@@ -25,12 +25,16 @@ def row_reduce(matrix):
 
 def index():
     if request.method == 'POST':
-        #get matrix and call row_reduce
-        #store the reduced matrix in matrix_reduced
+        #Get matrix and call row_reduce
+        #Store the reduced matrix in matrix_reduced
         matrix = [
             [Fraction(request.form['a11']), Fraction(request.form['a12']), Fraction(request.form['a13'])],
             [Fraction(request.form['a21']), Fraction(request.form['a22']), Fraction(request.form['a23'])],
             [Fraction(request.form['a31']), Fraction(request.form['a32']), Fraction(request.form['a33'])]
         ]
         matrix_reduced = row_reduce(matrix)
-        #TODO: render template for matrix and no matrix
+        return render_template('index.html', matrix=matrix, matrix_reduced=rmatrix_reduced)
+    return render_template('index.html', matrix=None, matrix_reduced=None) #Set matrix to empty when app is first loaded
+
+if __name__ == '__main__':
+    app.run(debug=True) 
