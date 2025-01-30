@@ -33,3 +33,4 @@ def index():
             [Fraction(request.form['a31']), Fraction(request.form['a32']), Fraction(request.form['a33'])]
         ]
         matrix_reduced = row_reduce(matrix)
+        #TODO: render template for matrix and no matrix
