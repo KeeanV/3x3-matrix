@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3x3 Matrix Row Reduction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>3x3 Matrix Row Reduction</h1>
+    <form method="POST">
+        <div class="matrix-input">
+            <input type="number" name="a11" required>
+            <input type="number" name="a12" required>
+            <input type="number" name="a13" required>
+            <input type="number" name="a21" required>
+            <input type="number" name="a22" required>
+            <input type="number" name="a23" required>
+            <input type="number" name="a31" required>
+            <input type="number" name="a32" required>
+            <input type="number" name="a33" required>
+        </div>
+        <button type="submit">Row Reduce</button>
+    </form>
+
+    {% if matrix %}
+    <div class="matrix-output">
+    <h2>Your Matrix:</h2>
+    <table>
+        <tr>
+            <td>{{ matrix[0][0] }}</td>
+            <td>{{ matrix[0][1] }}</td>
+            <td>{{ matrix[0][2] }}</td>
+        </tr>
+        <tr>
+            <td>{{ matrix[1][0] }}</td>
+            <td>{{ matrix[1][1] }}</td>
+            <td>{{ matrix[1][2] }}</td>
+        </tr>
+        <tr>
+            <td>{{ matrix[2][0] }}</td>
+            <td>{{ matrix[2][1] }}</td>
+            <td>{{ matrix[2][2] }}</td>
+        </tr>
+    </table>
+
+
+    <h2>Row Reduced Matrix:</h2>
+    <table>
+        <tr>
+            <td>{{ matrix_reduced[0][0] }}</td>
+            <td>{{ matrix_reduced[0][1] }}</td>
+            <td>{{ matrix_reduced[0][2] }}</td>
+        </tr>
+        <tr>
+            <td>{{ matrix_reduced[1][0] }}</td>
+            <td>{{ matrix_reduced[1][1] }}</td>
+            <td>{{ matrix_reduced[1][2] }}</td>
+        </tr>
+        <tr>
+            <td>{{ matrix_reduced[2][0] }}</td>
+            <td>{{ matrix_reduced[2][1] }}</td>
+            <td>{{ matrix_reduced[2][2] }}</td>
+        </tr>
+    </table>
+</div>
+{% endif %}
+
+</body>
+</html>
