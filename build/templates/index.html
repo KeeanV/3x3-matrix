@@ -36,15 +36,20 @@
     <h1>3x3 Matrix Row Reduction</h1>
     <form method="POST">
         <div class="matrix-input">
-            <input type="number" name="a11" required>
-            <input type="number" name="a12" required>
-            <input type="number" name="a13" required>
-            <input type="number" name="a21" required>
-            <input type="number" name="a22" required>
-            <input type="number" name="a23" required>
-            <input type="number" name="a31" required>
-            <input type="number" name="a32" required>
-            <input type="number" name="a33" required>
+            <div class = "matrix-row">
+                <input type="number" name="a11" required>
+                <input type="number" name="a12" required>
+                <input type="number" name="a13" required>
+            </div>
+            <div class = "matrix-row">          
+                <input type="number" name="a21" required>
+                <input type="number" name="a22" required>
+                <input type="number" name="a23" required> </div>
+            <div class = "matrix-row">
+                <input type="number" name="a31" required>
+                <input type="number" name="a32" required>
+                <input type="number" name="a33" required>
+             </div>
         </div>
         <button type="submit">Row Reduce</button>
     </form>
