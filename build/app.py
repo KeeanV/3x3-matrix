@@ -30,7 +30,24 @@ def solve(matrix):
     if any(row[-1] and not any(row[:-1]) for row in matrix):
         return None  #Checks if matrix is inconsistent, if there's an all 0 row except the last column
     
-    #if any(all(x == 0 for x in row) for row in matrix):
+    # unique solutions cases
+    for i in range(rows):
+        pivot_col = -1
+        for j in range(cols - 1):
+            if matrix[i][j] != 0:
+                pivot_col = j
+                break
+        if pivot_col != -1:
+            solutions[pivot_col] = matrix[i][-1] - sum(
+                matrix[i][j] * solutions.get(j, 0) for j in range(pivot_col + 1, cols - 1)
+            )
+
+    # infinitely many solutions case
+    for j in range(cols - 1):
+        if j not in solutions:
+            solutions[j] = f"free (let x{j+1} = t)"
+
+    return solutions
 
 
 
@@ -41,13 +58,14 @@ def index():
         #Get matrix and call row_reduce
         #Store the reduced matrix in matrix_reduced
         matrix = [
-            [Fraction(request.form['a11']), Fraction(request.form['a12']), Fraction(request.form['a13'])],
-            [Fraction(request.form['a21']), Fraction(request.form['a22']), Fraction(request.form['a23'])],
-            [Fraction(request.form['a31']), Fraction(request.form['a32']), Fraction(request.form['a33'])]
+            [Fraction(request.form['a11']), Fraction(request.form['a12']), Fraction(request.form['a13']), Fraction(request.form['b1'])],
+            [Fraction(request.form['a21']), Fraction(request.form['a22']), Fraction(request.form['a23']), Fraction(request.form['b2'])],
+            [Fraction(request.form['a31']), Fraction(request.form['a32']), Fraction(request.form['a33']), Fraction(request.form['b3'])]
         ]
         matrix_reduced = row_reduce(matrix)
-        return render_template('index.html', matrix=matrix, matrix_reduced=matrix_reduced)
-    return render_template('index.html', matrix=None, matrix_reduced=None) #Set matrix to empty when app is first loaded
+        solutions = solve(matrix_reduced)
+        return render_template('index.html', matrix=matrix, matrix_reduced=matrix_reduced, solutions = solutions) 
+    return render_template('index.html', matrix=None, matrix_reduced=None, solutions = None) #Set matrix to empty when app is first loaded
 
 if __name__ == '__main__':
     app.run(debug=True) 
